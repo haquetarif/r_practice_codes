@@ -1,35 +1,36 @@
-# Create the matrix "mat"
-mat <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+# Sample data for the matrix "mat"
+mat <- matrix(1:12, nrow = 3)
 
-# Create the data frame "data"
+# Sample data for the dataset "data"
 data <- data.frame(
-  Name = c("Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Hank"),
-  Age = c(25, 30, 35, 22, 28, 45, 29, 33),
-  Score = c(85, 92, 78, 65, 88, 76, 95, 80)
+  Name = c("Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(25, 30, 22, 35, 28, 40, 26, 29),
+  Salary = c(50000, 60000, 45000, 70000, 55000, 75000, 52000, 62000)
 )
 
-# Define the vector "student_age"
-student_age <- c(20, 21, 22, 23, 24, 25, 26, 27)
+# Sample data for vector "vec"
+vec <- c(10, 20, 30, 40, 50)
 
-# Define the vector "mid_term_marks" with some NA values
-mid_term_marks <- c(90, 85, 92, NA, 78, 87, NA, 94)
+# Sample data for vector "student_age" with NA values
+student_age <- c(21, 22, 20, NA, 23, 25, NA, 24)
 
-# Create the data frame "employee_info" with NA values
+# Sample data for vector "mid_term_marks" with NA values
+mid_term_marks <- c(85, 92, 78, NA, 88, 94, 79, 91)
+
+# Sample data for data frame "employee_info" with NA values
 employee_info <- data.frame(
-  EmployeeID = c(1, 2, 3, 4, 5),
-  FirstName = c("John", "Jane", "Bob", "Alice", "Eva"),
-  LastName = c("Doe", "Smith", "Johnson", "Brown", "White"),
-  Age = c(35, 28, NA, 42, NA)
+  Name = c("Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(25, 30, NA, 35, 28, 40, NA, 29),
+  Salary = c(50000, 60000, 45000, NA, 55000, 75000, 52000, NA)
 )
 
-# Create the data frame "data_un_ordered"
+# Sample data for data frame "data_un_ordered"
 data_un_ordered <- data.frame(
-  Name = c("Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Hank"),
-  Deaths = c(5, 3, 8, 2, 7, 6, 9, 4),
-  Confirmed = c(150, 120, 210, 90, 200, 180, 230, 110)
+  Name = c("Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank"),
+  Deaths = c(10, 5, 8, 15, 12, 7, 9, 11),
+  Confirmed = c(100, 200, 150, 300, 250, 180, 220, 270)
 )
 
-# Problem Set with provided data
 # Exercise 1: Print the First Value of Profit
 print(profit_df$Profit[1])
 
@@ -38,7 +39,7 @@ attach(profit_df)
 print(mean(Profit))
 
 # Exercise 3: Rename the "Profit" column to "Gross_Profit"
-colnames(profit_df)[2] = "Gross_Profit"
+colnames(profit_df)[2] <- "Gross_Profit"
 
 # Exercise 4: Use the colnames() function to retrieve the column names of the data frame "profit_df".
 colnames(profit_df)
@@ -52,7 +53,7 @@ head(data, 8)
 # What is the difference between names() and colnames() functions in R? Provide an example for each.
 # - `colnames()` is specifically for data frames and matrices, while `names()` is for named objects like lists.
 # Example for colnames():
-colnames(profit_df)
+colnames(data)
 # Example for names():
 my_list <- list(A = 1, B = 2, C = 3)
 names(my_list)
@@ -86,3 +87,9 @@ mean(mid_term_marks, na.rm = TRUE)
 
 # Find the rows in the data frame "employee_info" that have NA values.
 na_rows <- employee_info[complete.cases(employee_info), ]
+
+# Calculate the median of the values in the vector "mid_term_marks" with NA values removed.
+median(mid_term_marks, na.rm = TRUE)
+
+# Calculate the variance of the values in the vector "mid_term_marks" with NA values removed.
+var(mid_term_marks, na.rm = TRUE)
