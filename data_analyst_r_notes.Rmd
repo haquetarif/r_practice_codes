@@ -1,0 +1,211 @@
+---
+title: "Data Analyst Course Notes: Boson Institute for Econometric Research - BIER"
+author: "Tarif Haque"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructor: Mr. Jamal Hossain
+
+### Class 1
+#### Packages and Libraries
+Packages and libraries are collections of pre-written code, functions, and resources that extend the capabilities of a programming language. They provide additional functionality and tools to perform specific tasks, such as data analysis, visualization, machine learning, and web development.
+
+Examples of R packages include ggplot2 for data visualization, dplyr for data manipulation, caret for machine learning, shiny for building interactive web applications, and forecast for time series forecasting. These packages enhance the functionality of R and make it easier to perform various data analysis tasks.
+
+**Code Example:**
+
+```r
+install.packages('installr')
+```
+We are installing the ‘installr’ package. We just have to install a library once in our computer
+
+
+```r
+library(installr)
+```
+We are loading the installr package. We have to load the library every time we reopen an R script i.e. re-opening the file after closing the R studio etc.
+
+
+```r
+updateR()
+```
+It is a function that is written inside installr library. We are using that to check for update of the R software.
+
+```r
+?updateR()
+```
+We can check information about any functions, or almost anything else in R just by putting a question mark (?) before that and running it.
+
+#### CSV File Format
+**Skip if you are familiar with how the file format works.**
+
+In R we can load data from different kinds of files. CSV (Comma-Separated Values) is one of the most popular file formats that we can use to load input data. We can also generate CSV files from R to save output data.
+
+It is a very simple file format. If you open any CSV file with any text editor (i.e. Notepad) you will see something in the format below:
+
+Name,Age,City
+John,25,New York
+Emma,30,London
+Michael,35,Paris
+
+Here the first row is the column head and every subsequent line (or row) is a record about an entity. Like in this little data set every row represents a person with their name,age and city. 
+
+You can also open CSV files in Excel or any other spreadsheet software like that.
+
+**Code Example:**
+
+```r
+data = read.csv(file.choose())
+```
+This line reads a CSV file using the read.csv() function. The file.choose() function opens a dialog box that allows you to select the file interactively. Once you select the file, the read.csv() function reads the file's contents and stores it in the variable data. We can call it anything if we want instead of “data”. But it’s better to give variables a relevant name.
+
+#### Assigning Data to Variables, Data Types and Data Structures in R
+**This section is very important for a deep understanding.**
+
+##### Assigning Data to Variables
+We have seen that we can store almost anything in R with a variable just by putting in in the right-side of a variable after an equal or arrow sign like below:
+
+**Code Example:**
+```r
+x = 20  # x <- 20 will do the same 
+Y = ‘Tarif’ 
+K = TRUE
+```
+
+This process is called assigning values to variables. 
+
+Like we said before the lift side of the equation is the name and the right side is the value. We should try to give easy-to-remember and easy-to-understand names to the variables. Like if you want to store age. You should write age = 20 not a = 20. Because it will make it easier to work with your code when you have a long and complex script with a lot of variables. 
+
+
+##### Finding out Data Type or Data Structure of a Variable
+
+We can see the type or structure of a variable using the class function
+
+**Code example: **
+```r
+N = TRUE # We are assigning the variable
+Age = 22
+class(N) #It will return “logical” as TRUE or FALSE are of that type 
+class(Age) #it will return “numeric” as it’s data type
+```
+
+##### R Data Types
+In R, there are several data types that are used to store different kinds of information in a variable. Here are the commonly used data types in R:
+
+**1. Numeric:** This data type is used to represent numbers with decimal points. For example, 3.14 and -2.5 are numeric values in R.
+
+**2. Integer:** Integers are whole numbers without decimal points. In R, you can explicitly specify a value as an integer by adding an "L" suffix. For example, 10L is an integer in R.
+
+**3. Logical:** The logical data type represents Boolean values, which can be either TRUE or FALSE. These values are often used in conditional statements and logical operations.
+
+**5. Character:** The character data type is used to represent text. Text values in R are enclosed in quotes, either single ('') or double (""). For example, "Hello, World!" is a character string in R.
+
+**6.Factor:** Factors are used to represent categorical data, where the possible values are predefined and limited. Factors are useful for storing and manipulating data with fixed levels or categories. For example, a factor variable could represent different levels of education such as "High School," "Bachelor's Degree," and "Master's Degree."
+
+**7. Date and Time:** R has specific data types for handling dates and times. The Date class is used for dates, and the POSIXct or POSIXlt classes are used for date-time values. These data types allow you to perform various operations and calculations with dates and times.
+
+**8. Complex:** The complex data type represents complex numbers with both real and imaginary parts. Complex numbers are written in the form a + bi, where a is the real part and b is the imaginary part.
+
+
+
+
+
+
+**Code Example:**
+Say a person is 9 years old. We can store this information in several data types based on the requirement of the particular model that we want to run.
+
+If we store it like below:
+
+```r
+age = 9
+
+# and Run
+
+class(age)
+```
+Then you’ll see the data type is “numeric”
+
+If we say only want to store whole number values in age and no fractions or decimals we can store it like below: 
+
+```r
+age = 9L 
+
+# Run 
+
+class(age)
+```
+
+You will see "integer".
+
+If we say need TRUE of FALSE values we can store the in this format
+
+```r
+age_9_years = TRUE
+
+Run 
+class(age_9_years)
+```
+You will get "logical".
+
+If you store like below:
+
+```r
+age = “nine”
+
+Run 
+class(age)
+```
+
+You will get "character" (it is the data type for text/string)
+
+If we want to make categorical groups to store the information we can perform something like below:
+
+```r
+# Create a factor
+child_and_adult = factor(c("Child", "Adult", "Adult"), levels = c("Adult", "Child"))
+
+# Perform operations on factors
+summary(child_and_adult) #Output Below
+```
+```
+Adult  Child
+  2     1
+```  
+
+```r
+#Run 
+class(child_and_adult)
+```
+You will get "factor". 
+
+
+If we want to store the date and time of the birth of the person
+
+```r
+date_time_of_birth = "2014-06-09 03:32:21 +06" # First store the date and time as a text (character string)
+
+date_time_type <- as.POSIXct(date_time_of_birth, format = "%Y-%m-%d %H:%M:%S %z") # Converting the text data into date and time data
+
+#Run 
+class(date_time_type)
+```
+We will get  "POSIXct" "POSIXt" 
+
+##### R Data Structures
+**Vectors:** Vectors are the simplest and most common data structure in R. They can hold elements of the same data type, such as numeric, character, or logical values. Vectors can be created using the c() function, and their elements can be accessed using indexing like the example below:
+
+```r
+numeric_vector <- c(15, 2, 3, 4, 5)
+```
+We are creating a vector of numeric type
+Now, if we run
+```r
+numeric_vector[1]
+```
